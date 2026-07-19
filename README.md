@@ -157,8 +157,7 @@ git clone https://github.com/yourusername/distributed-task-queue.git
 cd distributed-task-queue
 
 # Create environment file
-cp .env.example .env
-# Edit .env with your values (especially POSTGRES_PASSWORD)
+cp .env .env.backup  # if you already have one
 
 # Start all services
 docker compose up --build
@@ -200,7 +199,7 @@ curl http://localhost/stats
 pip install -r requirements.txt
 
 # Copy and configure environment
-cp .env.example .env
+cp .env.example .env 2>$null; # skip if not present
 
 # Start PostgreSQL and Redis (via Docker or local)
 docker compose up -d postgres redis
@@ -229,7 +228,7 @@ celery -A app.tasks.celery_app beat -l info
 
 ## Configuration
 
-All configuration is managed via environment variables. See `.env.example` for the complete list.
+All configuration is managed via environment variables. See the [Environment Variables Reference](#environment-variables-reference) section below for the complete list.
 
 ### Required Variables
 
@@ -435,8 +434,7 @@ distributed-task-queue/
 ├── nginx.conf                   # Reverse proxy config
 ├── requirements.txt             # Python dependencies
 ├── pyproject.toml               # Project metadata + tool config
-├── .env.example                 # Environment template
-└── .gitignore                   # Git ignore rules
+├── .gitignore                   # Git ignore rules
 ```
 
 ---
