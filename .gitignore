@@ -21,7 +21,7 @@ ENV/
 *.swo
 *~
 
-# Environment
+# Environment (keep .env.example!)
 .env
 .env.local
 .env.production
